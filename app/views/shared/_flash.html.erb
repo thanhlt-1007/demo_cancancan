@@ -1,5 +1,5 @@
 <% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %> alert-dismissible">
+  <div class="alert alert-dismissible <%= flash_class type %>">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong><%= type.capitalize %>!</strong> <%= message %>.
   </div>
