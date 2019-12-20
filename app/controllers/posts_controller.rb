@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i(new create)
+  before_action :authenticate_user!, only: %i(new create edit update)
   before_action :load_post, only: %i(show)
+  before_action :load_user_post, only: %i(edit update)
 
   def new
     @post = Post.new
@@ -24,6 +25,19 @@ class PostsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update_attributes post_params
+      flash[:success] = "Update post success"
+      redirect_to post_path(@post)
+    else
+      flash.now[:danger] = "Update post fail"
+      render :edit
+    end
+  end
+
   private
 
   def post_params
@@ -32,6 +46,14 @@ class PostsController < ApplicationController
 
   def load_post
     @post = Post.find_by id: params[:id]
+    return if @post
+
+    flash[:danger] = "Post not found"
+    redirect_to root_url
+  end
+
+  def load_user_post
+    @post = current_user.posts.find_by id: params[:id]
     return if @post
 
     flash[:danger] = "Post not found"

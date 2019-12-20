@@ -6,7 +6,8 @@
     <%= link_to post_path(post), class: "btn btn-info" do %>
       <span class="glyphicon glyphicon glyphicon-eye-open"></span>
     <% end %>
-    <%= link_to "#", class: "btn btn-warning" do %>
+    <%= link_to post.user == current_user ? edit_post_path(post) : "#",
+      class: "btn btn-warning", disabled: post.user != current_user do %>
       <span class="glyphicon glyphicon glyphicon-pencil"></span>
     <% end %>
     <%= link_to "#", class: "btn btn-danger" do %>
