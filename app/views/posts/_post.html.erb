@@ -7,10 +7,14 @@
       <span class="glyphicon glyphicon glyphicon-eye-open"></span>
     <% end %>
     <%= link_to post.user == current_user ? edit_post_path(post) : "#",
-      class: "btn btn-warning", disabled: post.user != current_user do %>
+      disabled: post.user != current_user,
+      class: "btn btn-warning" do %>
       <span class="glyphicon glyphicon glyphicon-pencil"></span>
     <% end %>
-    <%= link_to "#", class: "btn btn-danger" do %>
+    <%= link_to post.user == current_user ? post_path(post) : "#",
+      method: post.user == current_user ? :DELETE : :GET,
+      disabled: post.user != current_user,
+      class: "btn btn-danger" do %>
       <span class="glyphicon glyphicon glyphicon-trash"></span>
     <% end %>
   </td>

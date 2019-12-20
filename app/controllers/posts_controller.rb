@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i(new create edit update)
   before_action :load_post, only: %i(show)
-  before_action :load_user_post, only: %i(edit update)
+  before_action :load_user_post, only: %i(edit update destroy)
 
   def new
     @post = Post.new
@@ -35,6 +35,16 @@ class PostsController < ApplicationController
     else
       flash.now[:danger] = "Update post fail"
       render :edit
+    end
+  end
+
+  def destroy
+    if @post.destroy
+      flash[:success] = "Delete post success"
+      redirect_to root_url
+    else
+      flash[:danger] = "Delete post fail"
+      redirect_back fallback_location: root_url
     end
   end
 
