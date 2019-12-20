@@ -1,0 +1,16 @@
+<tr>
+  <td><%= post_counter + 1 %></td>
+  <td><%= truncate post.title, length: 30 %></td>
+  <td><%= truncate post.content, length: 100 %></td>
+  <td>
+    <%= link_to "#", class: "btn btn-info" do %>
+      <span class="glyphicon glyphicon glyphicon-eye-open"></span>
+    <% end %>
+    <%= link_to "#", class: "btn btn-warning" do %>
+      <span class="glyphicon glyphicon glyphicon-pencil"></span>
+    <% end %>
+    <%= link_to "#", class: "btn btn-danger" do %>
+      <span class="glyphicon glyphicon glyphicon-trash"></span>
+    <% end %>
+  </td>
+</tr>

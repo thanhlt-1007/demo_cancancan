@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Post List</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "post", collection: @posts %>
+    </tbody>
+  </table>
+
+  <%= paginate @posts, theme: "twitter-bootstrap-3" %>
+</div>
