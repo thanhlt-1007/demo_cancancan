@@ -3,7 +3,7 @@
   <td><%= truncate post.title, length: 30 %></td>
   <td><%= truncate post.content, length: 100 %></td>
   <td>
-    <%= link_to "#", class: "btn btn-info" do %>
+    <%= link_to post_path(post), class: "btn btn-info" do %>
       <span class="glyphicon glyphicon glyphicon-eye-open"></span>
     <% end %>
     <%= link_to "#", class: "btn btn-warning" do %>
