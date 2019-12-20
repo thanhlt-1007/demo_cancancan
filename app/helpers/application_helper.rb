@@ -9,4 +9,8 @@ module ApplicationHelper
       "alert-#{type}"
     end
   end
+
+  def error_message record, attribute
+    record.errors.to_hash(true)[attribute]&.first
+  end
 end
