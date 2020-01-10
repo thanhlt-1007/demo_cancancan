@@ -1,4 +1,4 @@
-10.times do
+5.times do
   User.create email: FFaker::Internet.email,
     password: "Aa@123456", password_confirmation: "Aa@123456"
 end

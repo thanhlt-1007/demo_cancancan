@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i(new create edit update)
-  before_action :load_post, only: %i(show)
-  before_action :load_user_post, only: %i(edit update destroy)
+  load_and_authorize_resource
 
   def new
     @post = Post.new
@@ -19,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per 10
+    @posts = @posts.page(params[:page]).per 20
   end
 
   def show
@@ -56,14 +55,6 @@ class PostsController < ApplicationController
 
   def load_post
     @post = Post.find_by id: params[:id]
-    return if @post
-
-    flash[:danger] = "Post not found"
-    redirect_to root_url
-  end
-
-  def load_user_post
-    @post = current_user.posts.find_by id: params[:id]
     return if @post
 
     flash[:danger] = "Post not found"

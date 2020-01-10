@@ -18,6 +18,7 @@ gem "bootstrap-sass"
 gem "devise"
 gem "kaminari"
 gem "bootstrap-kaminari-views"
+gem "cancancan"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

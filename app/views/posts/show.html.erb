@@ -15,10 +15,13 @@
   </table>
 
   <div class="row">
-    <% if @post.user == current_user %>
+    <% if can? :update, @post %>
       <%= link_to edit_post_path(@post), class: "btn btn-warning" do %>
         <span class="glyphicon glyphicon glyphicon-pencil"></span> Edit Post
       <% end %>
+    <% end %>
+
+    <% if can? :destroy, @post %>
       <%= link_to post_path(@post), method: :DELETE, class: "btn btn-danger" do %>
         <span class="glyphicon glyphicon glyphicon-trash"></span> Delete Post
       <% end %>
